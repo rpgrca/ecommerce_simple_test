@@ -1,0 +1,18 @@
+        <div id="<%- producto.codigo %>" class="div-item">
+            <% if (! noLink) { %>
+            <a href="/productos/item/<%- producto.codigo %>">
+            <% } %>
+            <img class="img-thumbnail" src="<%- producto.imagen %>">
+            <% if (! noLink) { %>
+            </a>
+            <% } %>
+            <p><span class="span-title">Marca:</span> <%- producto.marca %></p>
+            <p><span class="span-title">Nombre:</span> <%- producto.nombre %></p>
+            <p><span class="span-title">Descripci&oacute;n:</span> <span class="span-description"><%- producto.descripcion %></span></p>
+            <p><span class="span-title">Precio de lista:</span> <span class="span-strike">$<%- producto.precioLista %></span></p>
+            <p><span class="span-title">Precio con descuento:</span> $<%- producto.precioFinal %></p>
+            <p><span class="span-title">C&oacute;digo:</span> <%- producto.codigo %></p>
+            <% if (producto.categorias.length > 0) { %>
+            <p><span class="span-title">Categor&iacute;as:</span> <% producto.categorias.forEach(function(c) { %><a class="blue-link" href="/productos/categoria/<%-c%>"><%- c %></a>&nbsp;<% }); %></p>
+            <% } %>
+        </div>

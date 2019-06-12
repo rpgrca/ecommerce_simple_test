@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%- title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%- include('encabezadoTemplate', { usuario: usuario, pagina: 'index' }); %>
+
+    <% if (productos.length > 0) { %>
+    <p>Bienvenido a <%- title %>! Moment&aacute;neamente nos encontramos actualizando nuestro stock, sin embargo podemos ofrecerle los siguientes productos para compra inmediata.</p>
+    <% } else { %>
+    <p>Bienvenido a <%- title %>! Nos encontramos sin stock en este momento, por favor vis&iacute;tenos en otro momento.</p>
+    <% } %>
+
+    <div id="main-list" class="div-list">
+        <% productos.forEach(function(producto) { %>
+            <%- include('productoTemplate', { producto: producto, noLink: false }); %>
+        <% }); %>
+    </div>
+
+    <%- include('footerTemplate'); %>
+  </body>
+</html>

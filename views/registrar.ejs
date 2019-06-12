@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='UTF-8' />
+        <title><%- title %></title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <script src='/javascripts/script.js'></script>
+    </head>
+    <body onload='marcarCamposObligatorios()'>
+        <%- include('encabezadoTemplate', { usuario: usuario, pagina: 'registrar' }); %>
+
+        <% if (necesitaAdministrador) { %>
+        <p>No existe ning&uacute;n usuario administrador en la base de datos. Por favor registre uno para continuar preparando el sitio.</p>
+        <% } else { %>
+        <p>Para poder comprar en este sitio deber&aacute; registrarse completando el siguiente formulario. Si ya tiene una cuenta, puede <a href="/acceder">acceder</a> a la misma.</p>
+        <% } %>
+        <div class="formulario">
+            <form method="post" name="form" action="/usuarios/registrar">
+                <label id="nombreLabel" for="nombre">Nombre</label><input type="text" id="nombre" name="nombre">
+                <label id="apellidoLabel" for="apellido">Apellido</label><input type="text" id="apellido" name="apellido">
+                <label id="dniLabel" for="dni">DNI</label><input type="text" id="dni" name="dni">
+                <label id="emailLabel" for="email">E-mail</label><input type="text" id="email" name="email">
+                <label id="telefonoLabel" for="telefono">Tel&eacute;fono</label><input type="tel" id="telefono" name="telefono">
+                <label id="claveLabel" for="clave">Clave</label><input type="password" id="clave" name="clave">
+                <label id="confirmarClaveLabel" for="confirmarClave">Confirmar clave</label><input type="password" id="confirmarClave">
+
+                <% if (necesitaAdministrador) { %>
+                <label id="esAdministrador" for="esAdministrador">Administrador</label><input disabled type="checkbox" id="esAdministrador" name="esAdministrador" checked>
+                <input type="hidden" id="esAdministrador" name="esAdministrador" value="true">
+                <% } %>
+
+                <label for="reset">&nbsp;</label> <!-- Necesario para alinear los botones -->
+                <input type="reset" id="reset" value="Limpiar">
+                <input type="submit" id="submit" value="Registrar" onclick="return !!(verificarCampos()? verificarClaveYConfirmacion() : false);">
+            </form>
+        </div>
+
+        <%- include('footerTemplate'); %>
+    </body>
+</html>

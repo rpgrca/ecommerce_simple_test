@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='UTF-8' />
+        <title><%- title %></title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <script src='/javascripts/script.js'></script>
+        <script src='/javascripts/adminUtilities.js'></script>
+    </head>
+    <body onload='marcarCamposObligatorios()'>
+        <%- include('encabezadoTemplate', { usuario: usuario, pagina: 'administradorUsuarios' }); %>
+
+	    <h2>Creaci&oacute;n</h2>
+        <p>Para crear un usuario, complete los campos y presione 'Enviar'.</p>
+        <div class="formulario">
+            <form method="post" id="form" name="form" action="/usuarios/crear">
+                <label id="nombreLabel" for="nombre">Nombre</label><input type="text" id="nombre" name="nombre">
+                <label id="apellidoLabel" for="apellido">Apellido</label><input type="text" id="apellido" name="apellido">
+                <label id="dniLabel" for="dni">DNI</label><input type="number" id="dni" name="dni">
+                <label id="emailLabel" for="email">E-Mail</label><input type="text" id="email" name="email">
+                <label id="telefonoLabel" for="codigo">Tel&eacute;fono</label><input type="text" id="telefono" name="telefono">
+                <label id="claveLabel" for="clave">Clave</label><input type="password" id="clave" name="clave">
+                <label id="confirmarClaveLabel" for="confirmarClave">Confirmar clave</label><input type="password" id="confirmarClave">
+                <label id="administradorLabel" for="esAdministrador">Administrador</label><input type="checkbox" id="esAdministrador" name="esAdministrador" value="true">
+                <label for="reset">&nbsp;</label>
+                <input type="reset" id="reset" value="Limpiar">
+                <input type="submit" id="submit" value="Enviar" onclick="return !!(verificarCampos()? verificarClaveYConfirmacion() : false);">
+            </form>
+        </div>
+
+        <h2>B&uacute;squeda</h2>
+        <p>Para buscar un usuario ingrese el id del mismo y presione 'Buscar'.<br>
+        Si se busca sin especificar un id se traer&aacute; la totalidad de los usuarios en formato JSON.</br>
+        <div class="formulario">
+            <form method="get" id="formularioBusqueda" name="formularioBusqueda" onsubmit="return buscarYesperarRespuesta('/usuarios/buscar', true)"> <!--action="/usuarios/buscar/:id"> -->
+                <label id="idLabel" for="id">Id</label><input type="text" id="idBuscar" name="id">
+                <label for="submitBusqueda">&nbsp;</label> <!-- Necesario para alinear los botones -->
+                <input type="submit" id="submitBusqueda" value="Buscar">
+                <label id="resultadoLabel" for="resultadoBusqueda">Resultado</label><textarea rows="10" cols="24" form="form" id="resultadoBusqueda" name="resultadoBusqueda"></textarea>
+            </form>
+        </div>
+
+        <h2>Actualizaci&oacute;n</h2>
+        <p>A&uacute;n sin implementar.</p>
+
+        <h2>Borrado</h2>
+        <p>Para borrar un usuario ingrese el id del mismo y presione 'Borrar'.</p>
+        <div class="formulario">
+            <!-- <form method="post" id="formularioBorrar" name="formularioBorrar" onsubmit="return borrarYesperarRespuesta('/usuarios/borrar')"> -->
+            <form method="post" id="formularioBorrar" name="formularioBorrar" action="/usuarios/borrar">
+                <label class="miembroFormulario" id="idLabel" for="id">Id</label><input class="miembroFormulario" type="text" id="idBorrar" name="id">
+                <label class="miembroFormulario" for="submitBorrar">&nbsp;</label>
+                <input class="miembroFormulario" type="submit" id="submitBorrado" value="Borrar">
+                <!-- <span class="miembroFormulario" name="resultadoBorrado" id="resultadoBorrado"></span> -->
+            </form>
+        </div>
+
+        <h2>Purgado</h2>
+        <p>Para purgar todos los usuarios comunes de la base de datos presione el bot&oacute;n 'Purgar'.<br>
+        Los usuarios administrador deben ser borrados manualmente con la opci&oacute;n 'Borrar'.</p>
+        <div class="formulario">
+            <form method="post" id="formularioPurgar" name="formularioPurgar" action="/usuarios/purgar">
+                <input class="miembroFormulario" type="submit" id="purgarUsuarios" value="Purgar">
+            </form>
+        </div>
+
+        <%- include('footerTemplate'); %>
+    </body>
+</html>

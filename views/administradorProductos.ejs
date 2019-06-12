@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='UTF-8' />
+        <title><%- title %></title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <script src='/javascripts/script.js'></script>
+    </head>
+    <body onload='marcarCamposObligatorios()'>
+        <%- include('encabezadoTemplate', { usuario: usuario, pagina: 'administradorProductos' }); %>
+
+        <h2>Inicializaci&oacute;n</h2>
+        <p>Presionando el bot&oacute;n se crear&aacute;n autom&aacute;ticamente los productos en la base de datos</p>
+        <div class="formulario">
+            <form method="post" id="formularioInicializacion" name="formularioInicializacion" action="/productos/inicializar">
+                <input type="submit" id="inicializador" name="inicializador" value="Inicializar base de datos">
+            </form>
+        </div>
+
+	    <h2>Creaci&oacute;n</h2>
+        <p>Para crear un producto, complete los campos y presione 'Enviar'.<br>Las &uacute;nicas im&aacute;genes permitidas son las que son elegidas desde el directorio <em>public/images</em>. Dichas im&aacute;genes seran referenciadas a ese directorio (no se guardar&aacute;n im&aacute;genes en la base de datos).</p>
+        <div class="formulario">
+            <form method="post" id="form" name="form" action="/productos/crear">
+                <label id="nombreLabel" for="nombre">Nombre</label><input type="text" id="nombre" name="nombre">
+                <label id="marcaLabel" for="marca">Marca</label><input type="text" id="marca" name="marca">
+                <label id="descripcionLabel" for="descripcion">Descripci&oacute;n</label><textarea rows="10" cols="24" form="form" name="descripcion"></textarea>
+                <label id="precioListaLabel" for="precioLista">Precio de Lista</label><input type="number" id="precioLista" name="precioLista">
+                <label id="precioFinalLabel" for="precioFinal">Precio Final</label><input type="number" id="precioFinal" name="precioFinal">
+                <label id="codigoLabel" for="codigo">C&oacute;digo</label><input type="text" id="codigo" name="codigo">
+                <label id="imagenLabel" for="imagen">Imagen</label><input type="file" id="imagen" name="imagen">
+                <label id="categoriasLabel" for="categorias">Categor&iacute;as</label><input type="text" id="categorias" name="categorias">
+                <label for="reset">&nbsp;</label>
+                <input type="reset" id="reset" value="Limpiar">
+                <input type="submit" id="submit" value="Enviar" onclick="return verificarCampos();">
+            </form>
+        </div>
+
+        <h2>B&uacute;squeda</h2>
+        <p>Para buscar un producto ingrese el id del mismo y presione 'Buscar'.<br>
+        Al marcar la opci&oacute;n <em>JSON</em> se visualizar&aacute; el JSON correspondiente; en caso contrario se visualizar&aacute; la p&aacute;gina del producto.</br>
+        Si se busca sin especificar un id con la opci&oacute;n <em>JSON</em> activa se traer&aacute; la totalidad de los productos en dicho formato, en caso contrario no traer&aacute; nada.</br>
+        <div class="formulario">
+            <form method="get" id="formBuscar" name="formBuscar" action="/productos/buscar">
+                <label id="idLabel" for="id">Id</label><input type="text" id="idBuscar" name="id">
+                <label id="rawLabel" for="raw">JSON</label><input type="checkbox" id="rawBuscar" name="raw">
+                <label for="submitBusqueda">&nbsp;</label> <!-- Necesario para alinear los botones -->
+                <input type="submit" id="submitBusqueda" value="Buscar">
+            </form>
+        </div>
+        <div id="resultadoBusqueda" />
+
+        <h2>Actualizaci&oacute;n</h2>
+        <p>A&uacute;n sin implementar.</p>
+
+        <h2>Borrado</h2>
+        <p>Para borrar un producto ingrese el id del producto y presione 'Borrar'.</p>
+        <div class="formulario">
+            <form method="post" id="formularioBorrar" name="formularioBorrar" action="/productos/borrar">
+                <label id="idLabel" for="idBorrar">Id</label><input type="text" id="idBorrar" name="id">
+                <label for="submitBorrar">&nbsp;</label>
+                <input type="submit" id="borrarBusqueda" value="Borrar">
+            </form>
+        </div>
+
+        <h2>Purgado</h2>
+        <p>Para purgar todos los productos de la base de datos presione el bot&oacute;n 'Purgar'.</p>
+        <div class="formulario">
+            <form method="post" id="formularioPurgar" name="formularioPurgar" action="/productos/purgar">
+                <input type="submit" id="purgarProductos" value="Purgar">
+            </form>
+        </div>
+
+        <%- include('footerTemplate'); %>
+    </body>
+</html>

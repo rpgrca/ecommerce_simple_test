@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='UTF-8' />
+        <title><%- title %></title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <script src='/javascripts/script.js'></script>
+        <style>
+            .testProcedure {
+                display: block;
+                position: left;
+                width: 30%;
+            }
+            .testResult {
+                display: block;
+                position: left;
+                width: 30%;
+            }
+            #test-table {
+                width: 100%;
+                display: table;
+                background-color: white;
+            }
+
+            #test-table-caption {
+                display: table-caption;
+                text-align: center;
+                font-size: 30px;
+                font-weight: bold;
+            }
+
+            #test-table-header {
+                display: table-header-group;
+                background-color: gray;
+                font-weight: bold;
+                font-size: 25px;
+            }
+
+            .test-header-cell {
+                display: table-cell;
+                padding: 10px;
+                text-align: justify;
+                border-bottom: 1px solid black;
+            }
+
+            .test-table-group {
+                display: table-row-group;
+                border-bottom: 1px solid black;
+            }
+
+            .test-table-row {
+                display: table-row;
+                border-bottom: 1px solid black;
+            }
+
+            .test-table-row2 {
+                display: table-row;
+                column-span: 2;
+            }
+
+            .test-body-cell {
+                display: table-cell;
+            }
+        </style>
+    </head>
+    <body>
+        <%- include('encabezadoTemplate', { usuario: usuario, pagina: 'test' }); %>
+        <div id="test-table">
+            <div id="test-table-caption">Test Funcional del Sitio</div>
+            <div id="test-table-header">
+                <div class="test-header-cell">C&oacute;digo</div>
+                <div class="test-header-cell">Procedimiento</div>
+                <div class="test-header-cell">Resultado esperado</div>
+                <div class="test-header-cell">Chequeado</div>
+            </div>
+            <div class="test-table-group" style="background-color: #eeffaa;">
+                <div class="test-table-row">
+                    <div class="test-body-cell">A-001</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos</em> sin productos en la base, sin estar logueado</div>
+                    <div class="test-body-cell">Debe cargar la p&aacute;gina de productos con el texto indicando que no hay productos.</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="A-001"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">A-002</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos</em> sin productos en la base, como usuario com&uacute;n</div>
+                    <div class="test-body-cell">Debe cargar la p&aacute;gina de productos con el texto indicando que no hay productos.</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="A-002"></div>
+                </div>
+                <div class="test-table-row">
+                   <div class="test-body-cell">A-003</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos</em> sin productos en la base, como usuario administrador</div>
+                    <div class="test-body-cell">Debe cargar la p&aacute;gina de productos con el texto indicando que no hay productos.</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="A-003"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">A-004</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos</em> con productos en la base, sin estar logueado</div>
+                    <div class="test-body-cell">Debe cargar la p&aacute;gina de productos mostrando los mismos.</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="A-004"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">A-004</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos</em> con productos en la base, como usuario com&uacute;n</div>
+                    <div class="test-body-cell">Debe cargar la p&aacute;gina de productos mostrando los mismos.</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="A-004"></div>
+                </div>
+                <div class="test-table-row">
+                   <div class="test-body-cell">A-005</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos</em> con productos en la base, como usuario administrador</div>
+                    <div class="test-body-cell">Debe cargar la p&aacute;gina de productos mostrando los mismos.</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="A-005"></div>
+                </div>
+            </div>
+            <div class="test-table-group">
+                <div class="test-table-row">
+                    <div class="test-body-cell">B-001</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/</em> sin estar logueado</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="B-001"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">B-002</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/acceder</em> sin estar logueado</div>
+                    <div class="test-body-cell">Debe cargar <em>/acceder</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="B-002"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">B-003</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/registrar</em> sin estar logueado, sin usuarios en la base</div>
+                    <div class="test-body-cell">Debe cargar <em>/registrar</em> para crear un administrador</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="B-003"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">B-004</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/registrar</em> sin estar logueado, solo con usuarios comunes en la base</div>
+                    <div class="test-body-cell">Debe cargar <em>/registrar</em> para crear un administrador</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="B-004"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">B-005</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/registrar</em> sin estar logueado, solo con administradores en la base</div>
+                    <div class="test-body-cell">Debe cargar <em>/registrar</em> para crear un usuario com&uacute;n</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="B-005"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">B-006</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/registrar</em> sin estar logueado, con administradores y usuarios comunes en la base</div>
+                    <div class="test-body-cell">Debe cargar <em>/registrar</em> para crear un usuario com&uacute;n</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="B-006"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">B-007</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos</em> sin estar logueado</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="B-007"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">B-008</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos/admin</em> sin estar logueado</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="B-008"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">B-009</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos/XXXXX</em> sin estar logueado</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="B-009"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">B-010</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos/item/XXXXX</em> (inv&aacute;lido) sin estar logueado</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="B-010"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">B-011</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos/item/</em> sin estar logueado</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="B-011"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">B-012</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos/item/DW42X</em> (v&aacute;lido) sin estar logueado</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos/item/DW42X</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="B-012"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">B-013</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos/categoria</em> sin estar logueado</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="B-013"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">B-014</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos/categoria/heladera</em> (v&aacute;lido) sin estar logueado</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos/categoria/heladera</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="B-014"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">B-015</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos/categoria/XXXXX</em> (inv&aacute;lido) sin estar logueado</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos/categoria/XXXXX</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="B-015"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">B-016</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/usuarios</em> sin estar logueado</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="B-016"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">B-017</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/usuarios/admin</em> sin estar logueado</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="B-017"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">B-018</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/usuarios/XXXXX</em> (inv&aacute;lido) sin estar logueado</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="B-018"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">B-019</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/usuarios/buscar</em> sin estar logueado</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="B-019"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">B-020</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/usuarios/buscar/XXXXX</em> (inv&aacute;lido) sin estar logueado</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="B-019"></div>
+                </div>
+            </div>
+            <div class="test-table-group" style="background-color: #eeffaa;">
+                <div class="test-table-row">
+                    <div class="test-body-cell">C-001</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/</em> como usuario com&uacute;n</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="C-001"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">C-002</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/acceder</em> como usuario com&uacute;n</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="C-002"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">C-003</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/registrar</em> como usuario com&uacute;n sin administrador en la base</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="C-003"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">C-004</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/registrar</em> como usuario com&uacute;n con administrador en la base</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="C-004"></div>
+                </div>
+
+                <div class="test-table-row">
+                    <div class="test-body-cell">C-005</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos</em> como usuario com&uacute;n</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="C-005"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">C-006</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos/admin</em> como usuario com&uacute;n</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="C-006"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">C-007</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos/XXXXX</em> como usuario com&uacute;n</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="C-007"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">C-008</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos/item/XXXXX</em> como usuario com&uacute;n</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="C-008"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">C-009</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos/categoria</em> como usuario com&uacute;n</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="C-009"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">C-010</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos/categoria/heladera</em> (v&aacute;lido) como usuario com&uacute;n</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos/categoria/heladera</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="C-010"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">C-011</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos/categoria/XXXXX</em> (inv&aacute;lido) como usuario com&uacute;n</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos/categoria/XXXXX</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="C-011"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">C-012</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/usuarios</em> como usuario com&uacute;n</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="C-012"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">C-013</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/usuarios/admin</em> como usuario com&uacute;n</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="C-013"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">C-014</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/usuarios/XXXXX</em> (inv&aacute;lido) como usuario com&uacute;n</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="C-014"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">C-015</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/usuarios/buscar</em> como usuario com&uacute;n</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="C-015"></div>
+                </div>
+            </div>
+            <div class="test-table-group">
+                <div class="test-table-row">
+                    <div class="test-body-cell">D-001</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/</em> como administrador</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="D-001"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">D-002</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/acceder</em> como administrador</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="D-002"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">D-003</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/registrar</em> como administrador sin otro administrador en la base</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="D-003"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">D-004</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/registrar</em> como administrador con usuarios comunes en la base</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="D-004"></div>
+                </div>
+
+                <div class="test-table-row">
+                    <div class="test-body-cell">D-005</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos</em> como administrador</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="D-005"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">D-006</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos/admin</em> como administrador</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos/admin</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="D-006"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">D-007</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos/XXXXX</em> como administrador</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="D-007"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">D-008</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos/item/XXXXX</em> como administrador</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="D-008"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">D-009</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos/categoria</em> como administrador</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="D-009"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">D-010</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos/categoria/heladera</em> como administrador</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos/categoria/heladera</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="D-010"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">D-011</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/productos/categoria/XXXXX</em> (inv&aacute;lido) como administrador</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos/categoria/XXXXX</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="D-011"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">D-012</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/usuarios</em> como administrador</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="D-012"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">D-013</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/usuarios/admin</em> como administrador</div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="D-013"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">D-014</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/usuarios/XXXXX</em> (inv&aacute;lido) como administrador</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="D-014"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">D-015</div>
+                    <div class="test-body-cell">Intentar acceder a <em>/usuarios/buscar</em> como administrador</div>
+                    <div class="test-body-cell">Debe cargar el JSON de los usuarios (tal vez deber&iacute;a ser un get en lugar de post)</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="D-015"></div>
+                </div>
+            </div>
+            <div class="test-table-group" style="background-color: #eeffaa;">
+                <div class="test-table-row">
+                    <div class="test-body-cell">E-001</div>
+                    <div class="test-body-cell">Presionar login sin ingresar ning&uacute;n dato</div>
+                    <div class="test-body-cell">Mensaje de error por e-mail vac&iacute;o, permanece en <em>/acceder</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="E-001"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">E-002</div>
+                    <div class="test-body-cell">Presionar login s&oacute;lamente con clave</div>
+                    <div class="test-body-cell">Mensaje de error por e-mail vac&iacute;o, permanece en <em>/acceder</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="E-002"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">E-003</div>
+                    <div class="test-body-cell">Presionar login con e-mail inv&aacute;lido XXXXX, sin clave</div>
+                    <div class="test-body-cell">Mensaje de error por e-mail inv&aacute;lido, permanece en <em>/acceder</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="E-003"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">E-004</div>
+                    <div class="test-body-cell">Presionar login con e-mail inv&aacute;lido XXXXX, con clave</div>
+                    <div class="test-body-cell">Mensaje de error por e-mail inv&aacute;lido, permanece en <em>/acceder</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="E-004"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">E-005</div>
+                    <div class="test-body-cell">Presionar login con e-mail inexistente test@usa.net, sin clave</div>
+                    <div class="test-body-cell">Mensaje de error por clave vac&iacute;a, permanece en <em>/acceder</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="E-005"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">E-006</div>
+                    <div class="test-body-cell">Presionar login con e-mail inexistente test@usa.net, con clave</div>
+                    <div class="test-body-cell">Debe cargar <em>/usuarios/acceder</em> con mensaje de acceso denegado, retornar a <em>/acceder</em> en 5 segundos</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="E-006"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">E-007</div>
+                    <div class="test-body-cell">Presionar login con un e-mail v&aacute;lido de usuario, sin clave</div>
+                    <div class="test-body-cell">Mensaje de error por clave vac&iacute;a, permanece en <em>/acceder</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="E-007"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">E-008</div>
+                    <div class="test-body-cell">Presionar login con un e-mail v&aacute;lido de usuario, con clave inv&aacute;lida</div>
+                    <div class="test-body-cell">Debe cargar <em>/usuarios/acceder</em> con mensaje de acceso denegado, retornar a <em>/acceder</em> en 5 segundos</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="E-008"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">E-009</div>
+                    <div class="test-body-cell">Presionar login con un e-mail v&aacute;lido de usuario con clave v&aacute;lida</div>
+                    <div class="test-body-cell">Debe cargar <em>/usuarios/acceder</em> con mensaje de acceso permitido, cargar <em>/productos</em> en 5 segundos</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="E-009"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">E-010</div>
+                    <div class="test-body-cell">Presionar login con un e-mail v&aacute;lido de administrador, sin clave</div>
+                    <div class="test-body-cell">Mensaje de error por clave vac&iacute;a, permanece en <em>/acceder</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="E-010"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">E-011</div>
+                    <div class="test-body-cell">Presionar login con un e-mail v&aacute;lido de administrador, con clave inv&aacute;lida</div>
+                    <div class="test-body-cell">Debe cargar <em>/usuarios/acceder</em> con mensaje de acceso denegado, retornar a <em>/acceder</em> en 5 segundos</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="E-011"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">E-012</div>
+                    <div class="test-body-cell">Presionar login con un e-mail v&aacute;lido de administrador con clave v&aacute;lida</div>
+                    <div class="test-body-cell">Debe cargar <em>/usuarios/acceder</em> con mensaje de acceso permitido, cargar <em>/productos</em> en 5 segundos con sesi&oacute;n abierta</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="E-012"></div>
+                </div>
+            </div>
+            <div class="test-table-group">
+                <div class="test-table-row">
+                    <div class="test-body-cell">F-001</div>
+                    <div class="test-body-cell">Presionar registrar sin ning&uacute;n dato</div>
+                    <div class="test-body-cell">Mensaje de error por nombre vac&iacute;o, permanece en <em>/registrar</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="F-001"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">F-002</div>
+                    <div class="test-body-cell">Presionar limpiar con todos los datos cargados</div>
+                    <div class="test-body-cell">Limpia todos los textos, permanece en <em>/registrar</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="F-002"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">F-003</div>
+                    <div class="test-body-cell">Presionar registrar con nombre &uacute;nicamente</div>
+                    <div class="test-body-cell">Mensaje de error por apellido vac&iacute;o, permanece en <em>/registrar</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="F-003"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">F-004</div>
+                    <div class="test-body-cell">Presionar registrar con apellido &uacute;nicamente</div>
+                    <div class="test-body-cell">Mensaje de error por nombre vac&iacute;o, permanece en <em>/registrar</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="F-004"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">F-005</div>
+                    <div class="test-body-cell">Presionar registrar con datos obligatorios completos y claves distintas</div>
+                    <div class="test-body-cell">Mensaje de error por claves distintas, permanece en <em>/registrar</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="F-005"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">F-006</div>
+                    <div class="test-body-cell">Presionar registrar con datos obligatorios completos y claves iguales, usuario com&uacute;n</div>
+                    <div class="test-body-cell">Debe cargar <em>/usuarios/registrar</em> con mensaje de registraci&oacute;n exitosa, cargar <em>/productos</em> en 5 segundos con sesi&oacute;n abierta</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="F-006"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">F-007</div>
+                    <div class="test-body-cell">Presionar registrar con datos obligatorios completos y claves iguales, usuario administrador</div>
+                    <div class="test-body-cell">Debe cargar <em>/usuarios/registrar</em> con mensaje de registraci&oacute;n exitosa, cargar <em>/productos</em> en 5 segundos con sesi&oacute;n abierta</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="F-007"></div>
+                </div>
+            </div>
+            <div class="test-table-group" style="background-color: #eeffaa;">
+                <div class="test-table-row">
+                    <div class="test-body-cell">G-001</div>
+                    <div class="test-body-cell">Estando logueado como usuario com&uacute;n, presionar Salir</div>
+                    <div class="test-body-cell">Debe terminar la sesi&oacute;n y redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="G-001"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">G-002</div>
+                    <div class="test-body-cell">Estando logueado como usuario administrador, presionar Salir</div>
+                    <div class="test-body-cell">Debe terminar la sesi&oacute;n y redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="G-002"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">G-003</div>
+                    <div class="test-body-cell">Como an&oacute;nimo, acceder a <em>/salir</em></div>
+                    <div class="test-body-cell">Debe redirigir a <em>/productos</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="G-003"></div>
+                </div>
+            </div>
+            <div class="test-table-group">
+                <!-- anonimo -->
+                <div class="test-table-row">
+                    <div class="test-body-cell">H-001</div>
+                    <div class="test-body-cell">Presionar un producto de la p&aacute;gina principal an&oacute;nimamente</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos/item</em> con el producto seleccionado</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="H-001"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">H-002</div>
+                    <div class="test-body-cell">Presionar el producto de la p&aacute;gina del producto an&oacute;nimamente</div>
+                    <div class="test-body-cell">Debe permanecer en la p&aacute;gina del producto</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="H-002"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">H-003</div>
+                    <div class="test-body-cell">Presionar la flecha de volver de la p&aacute;gina de un producto an&oacute;nimamente</div>
+                    <div class="test-body-cell">Debe cargar la p&aacute;gina anterior (<em>/productos</em> o similar)</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="H-003"></div>
+                </div>
+                <!-- usuario comun -->
+                <div class="test-table-row">
+                    <div class="test-body-cell">H-004</div>
+                    <div class="test-body-cell">Presionar un producto de la p&aacute;gina principal como usuario com&uacute;n</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos/item</em> con el producto seleccionado</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="H-004"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">H-005</div>
+                    <div class="test-body-cell">Presionar un producto de la p&aacute;gina del producto como usuario com&uacute;n</div>
+                    <div class="test-body-cell">Debe permanecer en la p&aacute;gina del producto</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="H-005"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">H-006</div>
+                    <div class="test-body-cell">Presionar la flecha de volver de la p&aacute;gina de un producto como usuario com&uacute;n</div>
+                    <div class="test-body-cell">Debe cargar la p&aacute;gina anterior (<em>/productos</em> o similar)</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="H-006"></div>
+                </div>
+                <!-- administrador -->
+                <div class="test-table-row">
+                    <div class="test-body-cell">H-007</div>
+                    <div class="test-body-cell">Presionar un producto de la p&aacute;gina principal como administrador</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos/item</em> con el producto seleccionado</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="H-007"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">H-008</div>
+                    <div class="test-body-cell">Presionar un producto de la p&aacute;gina del producto como administrador</div>
+                    <div class="test-body-cell">Debe permanecer en la p&aacute;gina del producto</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="H-008"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">H-009</div>
+                    <div class="test-body-cell">Presionar la flecha de volver de la p&aacute;gina de un producto como administrador</div>
+                    <div class="test-body-cell">Debe cargar la p&aacute;gina anterior (<em>/productos</em> o similar)</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="H-009"></div>
+                </div>
+            </div>
+            <div class="test-table-group" style="background-color: #eeffaa">
+                 <div class="test-table-row">
+                    <div class="test-body-cell">I-001</div>
+                    <div class="test-body-cell">Seleccionar la categor&iacute;a existente de un producto an&oacute;nimamente</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos</em> con los productos pertenecientes a esa categor&iacute;a</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="I-001"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">I-002</div>
+                    <div class="test-body-cell">Seleccionar una categor&iacute;a fict&iacute;cia de un producto an&oacute;nimamente</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos</em> vac&iacute;o, con texto de que se puede elegir productos</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="I-002"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">I-003</div>
+                    <div class="test-body-cell">Seleccionar la categor&iacute;a existente de un producto como usuario com&uacute;n</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos</em> con los productos pertenecientes a esa categor&iacute;a</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="I-003"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">I-004</div>
+                    <div class="test-body-cell">Seleccionar la categor&iacute;a fict&iacute;cia de un producto como usuario com&uacute;n</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos</em> con los productos pertenecientes a esa categor&iacute;a</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="I-004"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">I-005</div>
+                    <div class="test-body-cell">Seleccionar la categor&iacute;a existente de un producto como administrador</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos</em> con los productos pertenecientes a esa categor&iacute;a</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="I-005"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">I-006</div>
+                    <div class="test-body-cell">Seleccionar la categor&iacute;a fict&iacute;cia de un producto como administrador</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos</em> con los productos pertenecientes a esa categor&iacute;a</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="I-006"></div>
+                </div>
+            </div>
+            <div class="test-table-group">
+                 <div class="test-table-row">
+                    <div class="test-body-cell">J-001</div>
+                    <div class="test-body-cell">Crear un usuario com&uacute;n</div>
+                    <div class="test-body-cell">Debe cargar <em>/usuarios/admin</em> habiendo creado el usuario</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="J-001"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">J-002</div>
+                    <div class="test-body-cell">Crear un usuario administrador</div>
+                    <div class="test-body-cell">Debe cargar <em>/usuarios/admin</em> habiendo creado el usuario</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="J-002"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">J-003</div>
+                    <div class="test-body-cell">Buscar todos los usuarios</div>
+                    <div class="test-body-cell">Deben aparecer el JSON de cada usuario en el textarea inferior</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="J-003"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">J-004</div>
+                    <div class="test-body-cell">Buscar un usuario espec&iacute;fico con un id inexistente XXXXX</div>
+                    <div class="test-body-cell">Debe borrar el contenido del textarea inferior</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="J-004"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">J-005</div>
+                    <div class="test-body-cell">Buscar un usuario espec&iacute;fico con un id v&aacute;lido</div>
+                    <div class="test-body-cell">Debe aparecer el JSON del usuario buscado en el textarea inferior</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="J-005"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">J-006</div>
+                    <div class="test-body-cell">Intentar borrar sin ingresar ning&uacute;n id</div>
+                    <div class="test-body-cell">Debe recargar la p&aacute;gina <em>/usuarios/admin</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="J-006"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">J-007</div>
+                    <div class="test-body-cell">Intentar borrar un usuario con id inexistente XXXXX</div>
+                    <div class="test-body-cell">Debe recargar la p&aacute;gina <em>/usuarios/admin</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="J-007"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">J-008</div>
+                    <div class="test-body-cell">Borrar un usuario com&uacute;n</div>
+                    <div class="test-body-cell">Debe cargar <em>/usuarios/borrar</em> con mensaje de borrado exitoso, retornar a <em>/usuarios/admin</em> en 5 segundos</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="J-008"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">J-009</div>
+                    <div class="test-body-cell">Borrar un administrador que no sea el usuario logueado</div>
+                    <div class="test-body-cell">Debe cargar <em>/usuarios/borrar</em> con mensaje de borrado exitoso, retornar a <em>/usuarios/admin</em> en 5 segundos</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="J-009"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">J-010</div>
+                    <div class="test-body-cell">Borrarse a s&iacute; mismo</div>
+                    <div class="test-body-cell">Debe cargar <em>/usuarios/borrar</em> con mensaje de salida forzosa, retornar a <em>/productos</em> en 5 segundos</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="J-010"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">J-011</div>
+                    <div class="test-body-cell">Purgar usuarios comunes sin usuarios comunes en la base de datos</div>
+                    <div class="test-body-cell">Debe cargar <em>/usuarios/borrar</em> con mensaje de borrado exitoso, retornar a <em>/usuarios/admin</em> en 5 segundos</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="J-011"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">J-012</div>
+                    <div class="test-body-cell">Purgar usuarios comunes con usuarios comunes en la base de datos</div>
+                    <div class="test-body-cell">Debe cargar <em>/usuarios/borrar</em> con mensaje de borrado exitoso, retornar a <em>/usuarios/admin</em> en 5 segundos</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="J-012"></div>
+                </div>
+            </div>
+            <div class="test-table-group" style="background-color: #eeffaa">
+                 <div class="test-table-row">
+                    <div class="test-body-cell">K-001</div>
+                    <div class="test-body-cell">Inicializar base de datos vac&iacute;a</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos/inicializar</em> con mensaje de creado exitoso, retornar a <em>/productos/admin</em> en 5 segundos</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="K-001"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">K-002</div>
+                    <div class="test-body-cell">Inicializar base de datos ya inicializada</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos/inicializar</em> con mensaje de creado exitoso, retornar a <em>/productos/admin</em> en 5 segundos. No debe haber duplicaciones</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="K-002"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">K-003</div>
+                    <div class="test-body-cell">Crear un producto nuevo, c&oacute;digo &uacute;nico, sin imagen</div>
+                    <div class="test-body-cell">Debe cargar <em>/usuarios/admin</em>. Producto debe aparecer en <em>/productos</em> con imagen por defecto</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="K-003"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">K-004</div>
+                    <div class="test-body-cell">Crear un producto nuevo, c&oacute;digo &uacute;nico, con imagen</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos/admin</em>. Producto debe aparecer en <em>/productos</em> con su imagen</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="K-004"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">K-005</div>
+                    <div class="test-body-cell">Crear un producto nuevo, c&oacute;digo duplicado</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos/crear</em> con mensaje de error, retornar a <em>/productos/admin</em> en 5 segundos.</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="K-005"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">K-006</div>
+                    <div class="test-body-cell">Crear un producto nuevo, sin categor&iacute;as</div>
+                    <div class="test-body-cell">El producto creado no debe mostrar el campo categor&iacute;a</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="K-006"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">K-007</div>
+                    <div class="test-body-cell">Crear un producto nuevo, con una categor&iacute;a</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos/admin</em>, y el producto creado debe tener una categor&iacute;a</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="K-007"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">K-008</div>
+                    <div class="test-body-cell">Crear un producto nuevo, con m&aacute;s de una categor&iacute;a separadas con coma</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos/admin</em>, y el producto creado debe mostrar todas las categor&iacute;as</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="K-008"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">K-009</div>
+                    <div class="test-body-cell">Crear un producto nuevo, con una categor&iacute;a con espacio</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos/admin</em>, y el producto creado debe mostrar la categor&iacute;a</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="K-009"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">K-010</div>
+                    <div class="test-body-cell">Buscar todos los productos con JSON</div>
+                    <div class="test-body-cell">Debe cargar una nueva p&aacute;gina con el JSON de todos los productos</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="K-010"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">K-011</div>
+                    <div class="test-body-cell">Buscar todos los productos sin JSON</div>
+                    <div class="test-body-cell">Debe recargar <em>/productos/admin</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="K-011"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">K-012</div>
+                    <div class="test-body-cell">Buscar un producto espec&iacute;fico con un id inexistente XXXXX, sin JSON</div>
+                    <div class="test-body-cell">Debe recargar <em>/productos/admin</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="K-012"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">K-013</div>
+                    <div class="test-body-cell">Buscar un producto espec&iacute;fico con un id inexistente XXXXX, con JSON</div>
+                    <div class="test-body-cell">Debe recargar <em>/productos/admin</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="K-013"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">K-014</div>
+                    <div class="test-body-cell">Buscar un producto espec&iacute;fico con un id v&aacute;lido, sin JSON</div>
+                    <div class="test-body-cell">Debe cargar la p&aacute;gina del producto buscado, con el query en la url</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="K-014"></div>
+                </div>
+                  <div class="test-table-row">
+                    <div class="test-body-cell">K-015</div>
+                    <div class="test-body-cell">Buscar un producto espec&iacute;fico con un id v&aacute;lido, con JSON</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos/buscar</em> con el JSON del producto buscado, con el query en la url</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="K-015"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">K-016</div>
+                    <div class="test-body-cell">Intentar borrar sin ingresar ning&uacute;n id</div>
+                    <div class="test-body-cell">Debe recargar la p&aacute;gina <em>/productos/admin</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="K-016"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">K-017</div>
+                    <div class="test-body-cell">Intentar borrar un producto con id inexistente XXXXX</div>
+                    <div class="test-body-cell">Debe recargar la p&aacute;gina <em>/productos/admin</em></div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="K-017"></div>
+                </div>
+                 <div class="test-table-row">
+                    <div class="test-body-cell">K-018</div>
+                    <div class="test-body-cell">Borrar un producto</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos/borrar</em> con mensaje de borrado exitoso, retornar a <em>/productos/admin</em> en 5 segundos</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="K-018"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">K-019</div>
+                    <div class="test-body-cell">Purgar productos sin productos en la base de datos</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos/borrar</em> con mensaje de borrado exitoso, retornar a <em>/productos/admin</em> en 5 segundos</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="K-019"></div>
+                </div>
+                <div class="test-table-row">
+                    <div class="test-body-cell">K-020</div>
+                    <div class="test-body-cell">Purgar productos con productos en la base de datos</div>
+                    <div class="test-body-cell">Debe cargar <em>/productos/borrar</em> con mensaje de borrado exitoso, retornar a <em>/productos/admin</em> en 5 segundos</div>
+                    <div class="test-body-cell"><input type="checkbox" value="true" id="K-020"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+ 

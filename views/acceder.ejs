@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='UTF-8' />
+        <title><%- title %></title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+        <script src='/javascripts/script.js'></script>
+    </head>
+    <body onload='marcarCamposObligatorios()'>
+        <%- include('encabezadoTemplate', { usuario: usuario, pagina: 'acceder' }); %>
+
+        <p>Para poder comprar en este sitio deber&aacute; acceder a su cuenta desde el siguiente formulario. Si no tiene una puede <a href="/registrar">crearla</a>.</p>
+        <div class="formulario">
+            <form method="post" name="form" action="/usuarios/acceder">
+                <label id="emailLabel" for="email">E-mail</label><input type="text" id="email" name="email">
+                <label id="claveLabel" for="clave">Clave</label><input type="password" id="clave" name="clave">
+
+                <label for="reset">&nbsp;</label> <!-- Necesario para alinear los botones -->
+                <input type="submit" id="submit" value="Enviar" onclick="return verificarCampos();">
+            </form>
+        </div>
+
+        <%- include('footerTemplate'); %>
+    </body>
+</html>

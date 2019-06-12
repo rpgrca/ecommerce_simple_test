@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    <body>
+        <script>
+            setTimeout(function() {
+                window.location.href = "<%= url %>";
+            }, 5000);
+        </script>
+        <p><%- mensaje %> Redireccionando en 5 segundos, o presione <a href="<%= url %>">aqu&iacute;</a> para hacerlo en este momento.</p>
+    </body>
+</html>

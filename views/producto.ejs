@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%- producto.nombre %></title>
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body>
+        <%- include('encabezadoTemplate', { usuario: usuario, pagina: 'producto' }) %>
+
+        <h2><a href="javascript:window.history.back()"><img width="32" height="32" src="/images/back-arrow.png"></a> <%- producto.nombre %></h2>
+
+        <%- include('productoTemplate', { producto: producto, noLink: true }); %>
+        <%- include('footerTemplate'); %>
+        <div class="footer">Icons made by <a href="https://www.flaticon.com/authors/google" title="Google">Google</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+    </body>
+</html>

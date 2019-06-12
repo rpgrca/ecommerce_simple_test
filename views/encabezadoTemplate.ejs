@@ -1,0 +1,25 @@
+    <header>
+        <% if (pagina != 'index') { %>
+            <a href="/">P&aacute;gina principal</a> |
+        <% } %>
+        <% if (usuario) { %>
+            <% if (usuario.esAdministrador) { %>
+                <% if (pagina != 'administradorProductos') { %>
+                <a href="/productos/admin">Administrar productos</a> |
+                <% } %>
+                <% if (pagina != 'administradorUsuarios') { %>
+                <a href="/usuarios/admin">Administrar usuarios</a> |
+                <% } %>
+            <% } %>
+                <span>Hola <%- usuario.nombre %>!</span> | <a href="/salir">Salir</a>
+        <% } else { %>
+            <% if (pagina != 'acceder') { %>
+            <a href="/acceder">Acceder</a>
+            <% } %>
+            <% if (pagina == 'index') { %> | <% } %>
+            <% if (pagina != 'registrar') { %>
+            <a href="/registrar">Registrarse</a>
+            <% } %>
+        <% } %>
+    </header>
+    <h1><%- title %></h1>
